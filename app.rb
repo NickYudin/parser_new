@@ -1,4 +1,5 @@
 require './parser.rb'
+require './output.rb'
 
   #определить тип документа и запустить соответствующий подкласс
 
@@ -13,7 +14,7 @@ def exept
     else
       raise "I can't understand your answer" #понять как вызвать рескью внутри рескью
   end
-end
+end #loop break
 
 def start
 
@@ -34,12 +35,14 @@ end
 end
 
 start
+Output.show_result(@a)
+
 #отдельный класс
-@a.get_numbers
-@a.calculations
-#puts "Фаил #{file}"
-puts "Сумма всех чисел: #{@a.output[0]}"
-puts "Среднее значение: #{@a.output[1]}"
+
+
+
+
+
 
 
 
