@@ -1,13 +1,12 @@
 class BaseParser 
-  attr_reader :numbers, :summ , :avrg
+  attr_reader :output
 
   def initialize (filename)
     @filename = filename
     @numbers = []
   end
 
-  def check (data)
-    
+  def check (data)    
       if valid?(data)
         return data
       else
@@ -23,14 +22,11 @@ class BaseParser
   end
     
   #посчитать сумму и среднее 
-  def sum(array)
-    @summ = 0
-    array.each {|x| @summ += x.to_i }
-    return @summ
-  end
-
   def calculations
-    @avrg = sum(@numbers).to_f / @numbers.length
+    sum = 0
+    @numbers.each {|x| sum += x.to_i }
+    avrg = sum.to_f / @numbers.length
+    @output = Array.new [sum, avrg]
   end
 
 end
