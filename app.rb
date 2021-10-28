@@ -1,19 +1,25 @@
 require './parser.rb'
 
   #определить тип документа и запустить соответствующий подкласс
-if ARGV[0].match?(/.csv$/)
-  a = CsvParser.new
+puts 'Введите имя файла (.txt/.csv):'
+file = gets.chomp  
+if file.match?(/.csv$/)
+  a = CsvParser.new (file)
   p 'csv'
-elsif ARGV[0].match?(/.txt$/)  
-  a = TxtParser.new   
+elsif file.match?(/.txt$/)  
+  a = TxtParser.new (file)
   p 'txt'
 else
   raise "WRONG TYPE OF FILE!"
 end
+
+
+
+
+#отдельный класс
 a.get_numbers
-#a.check
 a.calculations
-puts "Фаил #{ARGV[0]}"
+puts "Фаил #{file}"
 puts "Сумма всех чисел: #{a.summ}"
 puts "Среднее значение: #{a.avrg}"
 

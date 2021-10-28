@@ -1,18 +1,18 @@
-class BaseParser
+class BaseParser 
   attr_reader :numbers, :summ , :avrg
 
-  def initialize
+  def initialize (filename)
+    @filename = filename
     @numbers = []
   end
 
   def check (data)
-    #@numbers.each do |data|
+    
       if valid?(data)
         return data
       else
         raise "File incorrect!"
       end
-    #end
   end
 
   #проверить на валидность. ексепшн
@@ -39,7 +39,7 @@ class TxtParser < BaseParser
 
   #прочитать строки
   def get_numbers
-    File.open(ARGV[0]).read.each_line do |line|
+    File.open(@filename).read.each_line do |line|
       @numbers << check(line.strip)
     end
   end
@@ -49,7 +49,7 @@ class CsvParser < BaseParser
   
   #отделить числа от дат
   def get_numbers
-    File.open(ARGV[0]).read.each_line do |line|
+    File.open(@filename).read.each_line do |line|
         @numbers << check(line.split(',')[1].strip)
     end
     @numbers.shift
